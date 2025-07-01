@@ -12,10 +12,13 @@ import jakarta.persistence.Table;
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_menu")
 	private Long id;
 	
 	@Column(name = "name", nullable = false, length = 30)
 	private String name;
+
+	
 	
 	public Category() {
 		

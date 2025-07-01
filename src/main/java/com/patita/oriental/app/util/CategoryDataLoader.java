@@ -14,11 +14,7 @@ public class CategoryDataLoader implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		if(categoryRepository.count()==0) {
-			categoryRepository.save(new Category(null, "Comida"));
-			categoryRepository.save(new Category(null, "Bebida"));
-			categoryRepository.save(new Category(null, "Postre"));
-		}
+		
 	}
 
 }

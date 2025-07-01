@@ -16,7 +16,7 @@ public class ProductDataLoader implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		if (productRepository.count() == 0) {
+		/*if (productRepository.count() == 0) {
             // Comidas
             productRepository.save(new Product(null, "Ramen", "Fideos instantáneos de diferentes sabores. Los toppings son por separado.",
                     new BigDecimal("65.00"), "https://live.staticflickr.com/65535/54582388941_d037fddcda_z.jpg", true));
@@ -66,7 +66,7 @@ public class ProductDataLoader implements CommandLineRunner{
                     new BigDecimal("65.00"), "https://live.staticflickr.com/65535/54557082665_4bcf762f78_b.jpg", true));
             productRepository.save(new Product(null, "Taiyaki con Pepperoni y queso", "Pastelito japonés en forma de pez relleno de pepperoni y queso. Incluye 2 piezas.",
                     new BigDecimal("65.00"), "https://live.staticflickr.com/65535/54557082665_4bcf762f78_b.jpg", true));
-        }
+        }*/
 		
 	}
 

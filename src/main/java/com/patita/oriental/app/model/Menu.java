@@ -1,19 +1,19 @@
 package com.patita.oriental.app.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "menu")
 public class Menu {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_menu")
 	private Long id;
 	
 	@Column(name = "name", nullable = false, length = 45)
@@ -28,17 +28,47 @@ public class Menu {
 	@Column(name = "image_url", nullable = false, length = 100)
 	private String imageUrl;
 	
+	@OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    private List<PurchaseMenu> purchaseMenus = new ArrayList<>();
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable( 
+			name="menu_has_products", 
+			joinColumns = @JoinColumn(name = "id_menu"),
+			inverseJoinColumns = @JoinColumn(name = "id_product")
+			)
+	private Set<Product> products = new HashSet<>();
+	
 	public Menu(){
 		
 	}
 
-	public Menu(Long id, String name, String description, BigDecimal priceMenu, String imageUrl) {
+	public Menu(Long id, String name, String description, BigDecimal priceMenu, String imageUrl, 
+			List<PurchaseMenu> purchaseMenus, Set<Product> products) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.priceMenu = priceMenu;
 		this.imageUrl = imageUrl;
+		this.purchaseMenus = purchaseMenus;
+		this.products = products;
+	}
+	
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+	public List<PurchaseMenu> getPurchaseMenus() {
+		return purchaseMenus;
+	}
+
+	public void setPurchaseMenus(List<PurchaseMenu> purchaseMenus) {
+		this.purchaseMenus = purchaseMenus;
 	}
 
 	public Long getId() {

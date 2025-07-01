@@ -1,6 +1,8 @@
 package com.patita.oriental.app.model;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.*;
 
@@ -9,6 +11,7 @@ import jakarta.persistence.*;
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_product")
 	private Long id;
 	
 	@Column(name = "name", nullable = false, length = 45)
@@ -23,16 +26,20 @@ public class Product {
 	@Column(name = "image_url", nullable = false, length = 100)
 	private String imageUrl;
 	
-	
 	@Column(name = "is_active", nullable = false)
 	private boolean isActive;
+	
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "id_menu")
+	private Category categories;
+
 	
 	public Product() {
 		
 	}
 
 	public Product(Long id, String name, String description, BigDecimal priceProduct, String imageUrl,
-			boolean isActive) {
+			boolean isActive, Category categories) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -40,6 +47,15 @@ public class Product {
 		this.priceProduct = priceProduct;
 		this.imageUrl = imageUrl;
 		this.isActive = isActive;
+		this.categories = categories;
+	}
+
+	public Category getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Category categories) {
+		this.categories = categories;
 	}
 
 	public Long getId() {

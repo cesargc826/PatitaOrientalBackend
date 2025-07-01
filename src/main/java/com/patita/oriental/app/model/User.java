@@ -1,5 +1,9 @@
 package com.patita.oriental.app.model;
 
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -7,6 +11,7 @@ import jakarta.persistence.*;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_user")
 	private Long id;
 	
 	@Column(name = "name", nullable = false, length = 70)
@@ -33,15 +38,35 @@ public class User {
 	@Column(name = "image_url", nullable = false, length = 100)
 	private String imageUrl;
 	
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private LocalDateTime createdAt;
+	@Column(name = "updated_at", nullable = false)
+	private LocalDateTime updatedAt;
+	
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "id_role")
+    private Role role;
+	
 	@Column(name = "is_active", nullable = false)
 	private boolean isActive;
+	
+	//=============== Relacion muachos a muchos para crear la tabla Favoritos ==================================
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable( 
+			name="favorites", 
+			joinColumns = @JoinColumn(name = "id_user"),
+			inverseJoinColumns = @JoinColumn(name = "id_menu")
+			
+			)
+	private Set<Menu> menus = new HashSet<>();
 	
 	public User(){
 		
 	}
 
 	public User(Long id, String name, String lastName, String email, String phoneNumber, String address,
-			String postalCode, String password, String imageUrl, boolean isActive) {
+			String postalCode, String password, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt, 
+			boolean isActive, Role role, Set<Menu> menus) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -52,8 +77,29 @@ public class User {
 		this.postalCode = postalCode;
 		this.password = password;
 		this.imageUrl = imageUrl;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 		this.isActive = isActive;
+		this.role = role;
+		this.menus = menus;
+	} 
+
+	public Set<Menu> getMenus() {
+		return menus;
 	}
+
+	public void setMenus(Set<Menu> menus) {
+		this.menus = menus;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	
 
 	public Long getId() {
 		return id;
@@ -126,6 +172,22 @@ public class User {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+	
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
 	public boolean isActive() {
 		return isActive;
@@ -156,11 +218,21 @@ public class User {
 		builder.append(password);
 		builder.append(", imageUrl=");
 		builder.append(imageUrl);
+		builder.append(", createdAt=");
+		builder.append(createdAt);
+		builder.append(", updatedAt=");
+		builder.append(updatedAt);
 		builder.append(", isActive=");
 		builder.append(isActive);
 		builder.append("]");
 		return builder.toString();
 	}
 	
-	
+	// Métodos de ayuda para sincronizar la relación bidireccional con Menu
+    public void addMenu(Menu menu) {
+        this.menus.add(menu);
+    }
+    public void removeMenu(Menu menu) {
+        this.menus.remove(menu);
+    }
 }

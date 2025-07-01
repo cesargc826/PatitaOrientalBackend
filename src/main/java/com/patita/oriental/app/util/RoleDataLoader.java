@@ -9,15 +9,10 @@ import com.patita.oriental.app.reposity.RoleRepository;
 
 @Component
 public class RoleDataLoader implements CommandLineRunner {
-	@Autowired
-	RoleRepository roleRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
-		if (roleRepository.count() == 0) {
-			roleRepository.save(new Role(null, "Admin"));
-			roleRepository.save(new Role(null, "Customer"));
-		}
+		
 		
 	}
 
