@@ -55,10 +55,10 @@ public class User {
 	@JoinTable( 
 			name="favorites", 
 			joinColumns = @JoinColumn(name = "id_user"),
-			inverseJoinColumns = @JoinColumn(name = "id_menu")
+			inverseJoinColumns = @JoinColumn(name = "id_product")
 			
 			)
-	private Set<Menu> menus = new HashSet<>();
+	private Set<Product> favorites = new HashSet<>();
 	
 	public User(){
 		
@@ -66,7 +66,7 @@ public class User {
 
 	public User(Long id, String name, String lastName, String email, String phoneNumber, String address,
 			String postalCode, String password, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt, 
-			boolean isActive, Role role, Set<Menu> menus) {
+			boolean isActive, Role role, Set<Product> favorites) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -81,15 +81,15 @@ public class User {
 		this.updatedAt = updatedAt;
 		this.isActive = isActive;
 		this.role = role;
-		this.menus = menus;
+		this.favorites = favorites;
 	} 
 
-	public Set<Menu> getMenus() {
-		return menus;
+	public Set<Product> getFavorites() {
+		return favorites;
 	}
 
-	public void setMenus(Set<Menu> menus) {
-		this.menus = menus;
+	public void setFavorites(Set<Product> favorites) {
+		this.favorites = favorites;
 	}
 
 	public Role getRole() {
@@ -229,10 +229,10 @@ public class User {
 	}
 	
 	// Métodos de ayuda para sincronizar la relación bidireccional con Menu
-    public void addMenu(Menu menu) {
-        this.menus.add(menu);
+    public void addFavorite(Product favorites) {
+        this.favorites.add(favorites);
     }
-    public void removeMenu(Menu menu) {
-        this.menus.remove(menu);
+    public void removeFavorites(Product favorites) {
+        this.favorites.remove(favorites);
     }
 }

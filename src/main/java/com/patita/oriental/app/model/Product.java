@@ -1,6 +1,7 @@
 package com.patita.oriental.app.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,8 +31,13 @@ public class Product {
 	private boolean isActive;
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name = "id_menu")
+	@JoinColumn(name = "id_category")
 	private Category categories;
+	
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private LocalDateTime createdAt;
+	@Column(name = "updated_at", nullable = false)
+	private LocalDateTime updatedAt;
 
 	
 	public Product() {
@@ -39,7 +45,7 @@ public class Product {
 	}
 
 	public Product(Long id, String name, String description, BigDecimal priceProduct, String imageUrl,
-			boolean isActive, Category categories) {
+			boolean isActive, Category categories, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -48,6 +54,25 @@ public class Product {
 		this.imageUrl = imageUrl;
 		this.isActive = isActive;
 		this.categories = categories;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
+	
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public LocalDateTime getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(LocalDateTime updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 
 	public Category getCategories() {
@@ -98,11 +123,11 @@ public class Product {
 		this.imageUrl = imageUrl;
 	}
 
-	public boolean isActive() {
+	public boolean getIsActive() {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 

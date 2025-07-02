@@ -3,7 +3,9 @@ package com.patita.oriental.app.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.*;
 
@@ -26,28 +28,35 @@ public class Purchase {
 	@JoinColumn(name = "id_user")
 	private User user;
 	
-	@OneToMany(mappedBy = "purchase", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<PurchaseMenu> purchaseMenus = new ArrayList<>();
+	//=============== Relacion muachos a muchos para crear la tabla Favoritos ==================================
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable( 
+			name="purchases_has_products", 
+			joinColumns = @JoinColumn(name = "id_purchase"),
+			inverseJoinColumns = @JoinColumn(name = "id_product")
+			)
+	private Set<Product> purchaseProducts = new HashSet<>();
+	
 	
 	public Purchase(){
 		
 	}
 
-	public Purchase(Long id, LocalDateTime orderDate, BigDecimal finalAmount, User user, List<PurchaseMenu> purchaseMenus) {
+	public Purchase(Long id, LocalDateTime orderDate, BigDecimal finalAmount, User user, Set<Product> purchaseProducts) {
 		super();
 		this.id = id;
 		this.orderDate = orderDate;
 		this.finalAmount = finalAmount;
 		this.user = user;
-		this.purchaseMenus = purchaseMenus;
+		this.purchaseProducts = purchaseProducts;
+	}
+	
+	public Set<Product> getPurchaseProducts() {
+		return purchaseProducts;
 	}
 
-	public List<PurchaseMenu> getPurchaseMenus() {
-		return purchaseMenus;
-	}
-
-	public void setPurchaseMenus(List<PurchaseMenu> purchaseMenus) {
-		this.purchaseMenus = purchaseMenus;
+	public void setPurchaseProducts(Set<Product> purchaseProducts) {
+		this.purchaseProducts = purchaseProducts;
 	}
 
 	public User getUser() {
