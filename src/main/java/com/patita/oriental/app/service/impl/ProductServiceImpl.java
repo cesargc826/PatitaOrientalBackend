@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 	public Product findById(Long id) {
 		Optional<Product> productOpt = productRepository.findById(id);
 		if( productOpt.isEmpty()) { // no hay objeto, la variable contiene null
-			throw new IllegalStateException("Role does not exist wih id " + id);
+			throw new IllegalStateException("Product does not exist wih id " + id);
 		}
 		Product existingProduct = productOpt.get();
 		return existingProduct;

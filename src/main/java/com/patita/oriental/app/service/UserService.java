@@ -38,9 +38,8 @@ public interface UserService {
     void deleteById(Long id);
     
     /**
-     * Encuentra todos los usuarios que tienen un usuario con un ID específico
-     * @param id El ID del usuario a buscar
+     * Encuentra todos los usuarios que estan activos 
      * @return Colección de usuarios encontrados
-     
-    Set<String> getUsersWithSpecificRoleId(Long id);*/
+     */
+    Iterable<User> getActiveUsers();
 }

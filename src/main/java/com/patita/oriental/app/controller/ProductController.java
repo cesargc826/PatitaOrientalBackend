@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.patita.oriental.app.model.Product;
 import com.patita.oriental.app.service.ProductService;
 
-//@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RestController  //@Controller + @ResponseBody
 @RequestMapping("/api/v1/products")
 public class ProductController {
@@ -25,7 +25,7 @@ public class ProductController {
 		this.productService = productService;
 	}
 	
-	@GetMapping // ("/api/v1/roles") http://localhost:8080/api/v1/roles
+	@GetMapping // ("/api/v1/products") http://localhost:8080/api/v1/roles
 	ResponseEntity<Iterable<Product>> getAllProducts(){
 		Iterable<Product> products = productService.findAll();
 		return ResponseEntity.ok(products);
@@ -43,7 +43,7 @@ public class ProductController {
 		return new ResponseEntity<Product> (newProduct, HttpStatus.CREATED); //201
 	}
 	
-	@GetMapping("/{id}")// http://localhost:8080/api/v1/roles/1
+	@GetMapping("/{id}")// http://localhost:8080/api/v1/products/1
 	Product getProductById(@PathVariable("id") Long id) {
 		return productService.findById(id);
 	}

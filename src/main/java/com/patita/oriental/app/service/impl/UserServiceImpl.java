@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.patita.oriental.app.model.Product;
 import com.patita.oriental.app.model.User;
 import com.patita.oriental.app.reposity.UserRepository;
 import com.patita.oriental.app.service.UserService;
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService {
 	public User findById(Long id) {
 		Optional<User> userOpt = userRepository.findById(id);
 		if( userOpt.isEmpty()) { // no hay objeto, la variable contiene null
-			throw new IllegalStateException("Role does not exist wih id " + id);
+			throw new IllegalStateException("User does not exist wih id " + id);
 		}
 		User existingUser = userOpt.get();
 		return existingUser;
@@ -67,5 +68,10 @@ public class UserServiceImpl implements UserService {
 		User existingUser = findById(id);
 		existingUser.setActive(false);; // Borrado lógico
 		userRepository.save( existingUser );
+	}
+	
+	@Override
+	public Iterable<User> getActiveUsers() {
+		return userRepository.findByIsActive(true);
 	}
 }
