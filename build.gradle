@@ -1,7 +1,3 @@
-tasks.withType(JavaCompile).configureEach {
-    options.fork = false
-}
-
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.5.3'
@@ -11,11 +7,16 @@ plugins {
 group = 'com.patita.oriental'
 version = '0.0.1-SNAPSHOT'
 
-/*java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
-}*/
+java {
+    toolchain {
+        // Forzamos a usar la JVM actual desactivando path o versión específica
+        languageVersion = JavaLanguageVersion.of(JavaVersion.current().majorVersion.toInteger())
+        vendor = JvmVendorSpec.any()
+        // Si quieres forzar más, puedes agregar:
+        // autoDetect = false
+    }
+}
+
 
 repositories {
 	mavenCentral()
