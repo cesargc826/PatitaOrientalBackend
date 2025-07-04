@@ -1,7 +1,6 @@
 package com.patita.oriental.app.util;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,6 @@ public class ProductDataLoader implements CommandLineRunner{
             Category postre = categoryRepository.findByName("Postre").orElseThrow();
             Category menuTematico = categoryRepository.findByName("Menú Temático").orElseThrow();
 
-            LocalDateTime now = LocalDateTime.now();
 
             List<Product> products = List.of(
                 new Product(null, "Ramen", "Fideos instantáneos de diferentes sabores. Los toppings son por separado.",

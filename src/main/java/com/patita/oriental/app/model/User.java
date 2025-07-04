@@ -1,6 +1,5 @@
 package com.patita.oriental.app.model;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 

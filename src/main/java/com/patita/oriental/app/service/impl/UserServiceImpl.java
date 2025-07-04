@@ -1,11 +1,8 @@
 package com.patita.oriental.app.service.impl;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-
-import com.patita.oriental.app.model.Product;
 import com.patita.oriental.app.model.User;
 import com.patita.oriental.app.reposity.UserRepository;
 import com.patita.oriental.app.service.UserService;
