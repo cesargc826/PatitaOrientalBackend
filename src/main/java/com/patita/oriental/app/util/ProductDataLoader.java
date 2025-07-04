@@ -29,6 +29,7 @@ public class ProductDataLoader implements CommandLineRunner{
             Category comida = categoryRepository.findByName("Comida").orElseThrow();
             Category bebida = categoryRepository.findByName("Bebida").orElseThrow();
             Category postre = categoryRepository.findByName("Postre").orElseThrow();
+            Category menuTematico = categoryRepository.findByName("Menú Temático").orElseThrow();
 
             LocalDateTime now = LocalDateTime.now();
 
@@ -97,7 +98,34 @@ public class ProductDataLoader implements CommandLineRunner{
                         new BigDecimal("65"), "https://live.staticflickr.com/65535/54557082665_4bcf762f78_b.jpg", true, postre),
 
                 new Product(null, "Taiyaki con Pepperoni y queso", "Pastelito japonés en forma de pez relleno de pepperoni y queso. Incluye 2 piezas.",
-                        new BigDecimal("65"), "https://live.staticflickr.com/65535/54557082665_4bcf762f78_b.jpg", true, postre)
+                        new BigDecimal("65"), "https://live.staticflickr.com/65535/54557082665_4bcf762f78_b.jpg", true, postre),
+                
+             
+                new Product(null, "Bangtan Box", "El paquete contiene de Comida: Ramen, Bebida: Bubble Tea frappeado de Oreo, Postre: Taiyaki con mermelada y Philadelphia + tu photocard de regalo.",
+                        new BigDecimal("180"), "https://live.staticflickr.com/65535/54564323050_866807c8f9_c.jpg", true, menuTematico),
+
+                new Product(null, "Blackpink Box", "El paquete contiene: Dumplings, Bebida: Bubble Tea frappeado de taro, Postre: Paleta Ternurin + tu photocard de regalo.",
+                        new BigDecimal("140"), "https://live.staticflickr.com/65535/54563993926_9efa59c3a2_c.jpg", true, menuTematico),
+
+                new Product(null, "Exo Box", "El paquete contiene de Comida: Gyozas, Bebida: Soda italiana sabor mora azul, Postre: Taiyaki con Nutella + tu photocard de regalo.",
+                        new BigDecimal("155"), "https://live.staticflickr.com/65535/54564323050_866807c8f9_c.jpg", true, menuTematico),
+
+                new Product(null, "Twice Box", "El paquete contiene de Comida: Takoyaki de queso, Bebida: Calpis, Postre: Galleta Ternurin + tu photocard de regalo.",
+                        new BigDecimal("90"), "https://live.staticflickr.com/65535/54564225858_f920dd80b7_z.jpg", true, menuTematico),
+
+                new Product(null, "Stray Box", "El paquete contiene de Comida: Mini Wontons, Bebida: Bubble Tea líquido de matcha, Postre: Taiyaki con jamón y queso + tu photocard de regalo.",
+                        new BigDecimal("145"), "https://live.staticflickr.com/65535/54563119802_de3011362d_z.jpg", true, menuTematico),
+
+                new Product(null, "Seventeen Box", "El paquete contiene de Comida: Takoyaki de camarón, Bebida: Soda italiana sabor mango, Postre: Taiyaki con crema pastelera + tu photocard de regalo.",
+                        new BigDecimal("145"), "https://live.staticflickr.com/65535/54564323450_4d347eceef_z.jpg", true, menuTematico),
+
+                new Product(null, "TXT Box", "El paquete contiene de Comida: Dumplings, Bebida: Bubble Tea líquido de taro, Postre: Taiyaki con pepperoni y queso + tu photocard de regalo.",
+                        new BigDecimal("170"), "https://live.staticflickr.com/65535/54564323050_866807c8f9_c.jpg", true, menuTematico),
+
+                new Product(null, "SHINee Box", "El paquete contiene de Comida: Gyozas, Bebida: Soda italiana sabor fresa, Postre: Paleta Ternurin + tu photocard de regalo.",
+                        new BigDecimal("130"), "https://live.staticflickr.com/65535/54564323050_866807c8f9_c.jpg", true, menuTematico)
+                
+                
             );
 
             productRepository.saveAll(products);
