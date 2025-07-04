@@ -38,10 +38,10 @@ public class User {
 	@Column(name = "image_url", nullable = false, length = 100)
 	private String imageUrl;
 	
-	@Column(name = "created_at", nullable = false, updatable = false)
+	/*@Column(name = "created_at", nullable = false, updatable = false)
 	private LocalDateTime createdAt;
 	@Column(name = "updated_at", nullable = false)
-	private LocalDateTime updatedAt;
+	private LocalDateTime updatedAt;*/
 	
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "id_role")
@@ -65,7 +65,7 @@ public class User {
 	}
 
 	public User(Long id, String name, String lastName, String email, String phoneNumber, String address,
-			String postalCode, String password, String imageUrl, LocalDateTime createdAt, LocalDateTime updatedAt, 
+			String postalCode, String password, String imageUrl, 
 			boolean isActive, Role role, Set<Product> favorites) {
 		super();
 		this.id = id;
@@ -77,8 +77,7 @@ public class User {
 		this.postalCode = postalCode;
 		this.password = password;
 		this.imageUrl = imageUrl;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
+		
 		this.isActive = isActive;
 		this.role = role;
 		this.favorites = favorites;
@@ -173,7 +172,7 @@ public class User {
 		this.imageUrl = imageUrl;
 	}
 	
-	public LocalDateTime getCreatedAt() {
+	/*public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
@@ -187,7 +186,7 @@ public class User {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
-	}
+	}*/
 
 	public boolean isActive() {
 		return isActive;
@@ -218,10 +217,10 @@ public class User {
 		builder.append(password);
 		builder.append(", imageUrl=");
 		builder.append(imageUrl);
-		builder.append(", createdAt=");
+		/*builder.append(", createdAt=");
 		builder.append(createdAt);
 		builder.append(", updatedAt=");
-		builder.append(updatedAt);
+		builder.append(updatedAt);*/
 		builder.append(", isActive=");
 		builder.append(isActive);
 		builder.append("]");

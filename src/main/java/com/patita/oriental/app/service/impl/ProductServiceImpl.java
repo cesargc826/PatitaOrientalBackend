@@ -50,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
 		existingProduct.setImageUrl(product.getImageUrl());
 		existingProduct.setIsActive(product.getIsActive());
 		existingProduct.setCategories(product.getCategories());
-		existingProduct.setUpdatedAt(LocalDateTime.now()); // Actualizamos timestamp
+		//existingProduct.setUpdatedAt(LocalDateTime.now()); // Actualizamos timestamp
 
 		Product updatedProduct = productRepository.save( existingProduct );
 		return updatedProduct;

@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
 	    existingUser.setImageUrl(user.getImageUrl());
 	    existingUser.setActive(user.isActive());
 	    existingUser.setFavorites(user.getFavorites()); // Si los favoritos pueden cambiar
-	    existingUser.setUpdatedAt(LocalDateTime.now()); // Actualizamos timestamp
+	    //existingUser.setUpdatedAt(LocalDateTime.now()); // Actualizamos timestamp
 
 		// existingRole.setId( role.getId() ); NO se permite modificar
 		User updatedUser = userRepository.save( existingUser );

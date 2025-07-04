@@ -34,10 +34,10 @@ public class Product {
 	@JoinColumn(name = "id_category")
 	private Category categories;
 	
-	@Column(name = "created_at", nullable = false, updatable = false)
+	/*@Column(name = "created_at", nullable = false, updatable = false)
 	private LocalDateTime createdAt;
 	@Column(name = "updated_at", nullable = false)
-	private LocalDateTime updatedAt;
+	private LocalDateTime updatedAt;*/
 
 	
 	public Product() {
@@ -45,7 +45,7 @@ public class Product {
 	}
 
 	public Product(Long id, String name, String description, BigDecimal priceProduct, String imageUrl,
-			boolean isActive, Category categories, LocalDateTime createdAt, LocalDateTime updatedAt) {
+			boolean isActive, Category categories) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -54,12 +54,12 @@ public class Product {
 		this.imageUrl = imageUrl;
 		this.isActive = isActive;
 		this.categories = categories;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
+		/*this.createdAt = createdAt;
+		this.updatedAt = updatedAt;*/
 	}
 
 	
-	public LocalDateTime getCreatedAt() {
+	/*public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
@@ -73,7 +73,7 @@ public class Product {
 
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
-	}
+	}*/
 
 	public Category getCategories() {
 		return categories;
